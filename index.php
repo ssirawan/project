@@ -19,14 +19,24 @@ foreach ($events as $event)
 {
   if($event->strlen(getText()) > 0)
   {
-	  $data = createNewRichmenu(getenv($ACCESS_TOKEN));
+	  $reply_token = $event->getReplyToken();
+	  $rich_menu = createNewRichmenu(getenv($ACCESS_TOKEN));
 	  //$bot->replyMessage($event->getReplyToken(),$data);
-	  $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-	  $send_result = send_reply_msg($REPLY_URL, $POST_HEADER, $post_body);
-
   }
+  if( strlen($data) > 0 )  // ตั้งแต่ตรงนี้คือส่วนใหม่
+  {
+
+   $data = [
+    'replyToken' => $reply_token,
+    'messages' => [['type' => 'text', 'text' => $rich_menu]]
+   ];
+   $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+	  
+   $send_result = send_reply_msg($REPLY_URL, $POST_HEADER, $post_body);
+
 
 }
+
 
 echo "OK";
 	
