@@ -18,7 +18,7 @@ foreach ($events as $event)
 	$len = $event->strlen(getText());
   if($len > 0)
   {
-	  $reply_token = $event->getReplyToken();
+	  $reply_token = $event['replyToken'];
 	  $rich_menu = createNewRichmenu(getenv($ACCESS_TOKEN));
 	  //$bot->replyMessage($event->getReplyToken(),$data);
   }
