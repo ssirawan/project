@@ -26,7 +26,7 @@ if ( sizeof($request_array['events']) > 0 )
   $reply_token = $event['replyToken'];
   if ($event['type'] == 'message' && $event['message']['type'] == 'text') //สนใจแค่ text ที่รับมา
   {
-	  $data = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(createNewRichmenu(getenv($ACCESS_TOKEN)))
+	  $data = createNewRichmenu(getenv($ACCESS_TOKEN))
 	  $bot->replyMessage($event->getReplyToken(),$data);
 	  /*
 	  $richmenu = '';//เรียกใช้ function สร้าง richmenu
