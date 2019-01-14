@@ -5,11 +5,19 @@ $db = pg_connect("host=ec2-54-235-133-42.compute-1.amazonaws.com port=5432 dbnam
 echo $db;
 */
 
-$API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOyVPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk8PnQNwJRLHbPslhqvzC1xk8lM8HLtnERPSG8oXBLNvwdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
+$CHANNEL_SECRET = 'e33ac5e982da548d1c1984ac6a97a69e';
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
-$request = file_get_contents('php://input');   // Get request content
-$request_array = json_decode($request, true);   // Decode JSON to Array
+
+$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($ACCESS_TOKEN);
+$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $CHANNEL_SECRET]);
+$signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
+
+$events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
+
+// $request = file_get_contents('php://input');   // Get request content
+// $request_array = json_decode($request, true);   // Decode JSON to Array
+
 if ( sizeof($request_array['events']) > 0 )
 {
  foreach ($request_array['events'] as $event)
@@ -18,28 +26,27 @@ if ( sizeof($request_array['events']) > 0 )
   $reply_token = $event['replyToken'];
   if ($event['type'] == 'message' && $event['message']['type'] == 'text') //สนใจแค่ text ที่รับมา
   {
-	  $text = $event['richMenuId'];
-	  $reply_message = $text;
+	  $data = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(createNewRichmenu(getenv($ACCESS_TOKEN)))
+	  $bot->replyMessage($event->getReplyToken(),$data['richMenuId']);
+	  /*
+	  $richmenu = '';//เรียกใช้ function สร้าง richmenu
+	  $data = $richmenu['richMenuId'];
+	  //$text = $event['richMenuId'];
+	  $reply_message = $data;
+	  */
   }
 
- 
-  if( strlen($reply_message) > 0 )
-  {
-   //$reply_message = iconv("tis-620","utf-8",$reply_message);
-   $data = [
-    'replyToken' => $reply_token,
-    'messages' => [['type' => 'text', 'text' => $reply_message]]
-   ];
-   $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-   $send_result = send_reply_message($API_URL, $POST_HEADER, $post_body);
-   echo "Result: ".$send_result."\r\n";
-  }
  }
 }
 echo "OK";
+	
 
-$richmenu_post_body = {"size": {"width": 2500,"height": 1686},"selected": true,"name": "Controller","chatBarText": "index",
-"areabuilders": [
+function createNewRichmenu($channelAccessToken) {
+  $sh = <<< EOF
+  curl -X POST \
+  -H 'Authorization: Bearer $channelAccessToken' \
+  -H 'Content-Type:application/json' \
+  -d '{"size": {"width": 2500,"height": 1686},"selected": true, "name": "Controller","chatBarText": "index","areas": [
     {
       "bounds" : {
         "x": 0,
@@ -92,25 +99,18 @@ $richmenu_post_body = {"size": {"width": 2500,"height": 1686},"selected": true,"
         "data": "Data 4"
       }
     }
-  ]
-};
+  ]}' https://api.line.me/v2/bot/richmenu;
+EOF;
+  $result = json_decode(shell_exec(str_replace('\\', '', str_replace(PHP_EOL, '', $sh))), true);
+  if(isset($result['richMenuId'])) {
+    return $result['richMenuId'];
+  }
+  else {
+    return $result['message'];
+  }
+}
 
-$RICH_URL = 'https://api.line.me/v2/bot/richmenu';
-
-$send_richmenu = create_richmenu($RICH_URL, $post_header,$richmenu_post_body);
-
-function send_reply_message($url, $post_header, $post_body)
-{
- $ch = curl_init($url);
- curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
- curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
- curl_setopt($ch, CURLOPT_HTTPHEADER, $post_header);
- curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
- curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
- $result = curl_exec($ch);
- curl_close($ch);
- return $result;
-	
+/*
 function create_richmenu($url, $post_header, $post_body)
 {
  $ch = curl_init($url);
@@ -122,9 +122,9 @@ function create_richmenu($url, $post_header, $post_body)
  $result = curl_exec($ch);
  curl_close($ch);
  return $result;
-}	
+	
 }
-
+*/
 
 
 
