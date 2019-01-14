@@ -102,12 +102,15 @@ function createNewRichmenu($channelAccessToken) {
   ]}' https://api.line.me/v2/bot/richmenu;
 EOF;
   $result = json_decode(shell_exec(str_replace('\\', '', str_replace(PHP_EOL, '', $sh))), true);
-  if(isset($result['richMenuId'])) {
+  return $result['richMenuId'];	
+  /*
+	if(isset($result['richMenuId'])) {
     return $result['richMenuId'];
   }
   else {
     return $result['message'];
   }
+  */
 }
 
 
