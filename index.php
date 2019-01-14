@@ -97,7 +97,7 @@ $richmenu_post_body = {"size": {"width": 2500,"height": 1686},"selected": true,"
 
 $RICH_URL = 'https://api.line.me/v2/bot/richmenu';
 
-$send_richmenu = create_richmenu($API_URL, $post_header,$richmenu_post_body);
+$send_richmenu = create_richmenu($RICH_URL, $post_header,$richmenu_post_body);
 
 function send_reply_message($url, $post_header, $post_body)
 {
