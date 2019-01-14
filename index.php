@@ -44,8 +44,7 @@ function createNewRichmenu($channelAccessToken) {
   curl -X POST \
   -H 'Authorization: Bearer $channelAccessToken' \
   -H 'Content-Type:application/json' \
-  -d \
-    '{"size": {"width": 2500,"height": 1686},"selected": true, "name": "Controller","chatBarText": "index","areas": [
+  -d '{"size": {"width": 2500,"height": 1686},"selected": true, "name": "Controller","chatBarText": "index","areas": [
     {
       "bounds" : {
         "x": 0,
@@ -98,7 +97,8 @@ function createNewRichmenu($channelAccessToken) {
         "data": "Data 4"
       }
     }
-  ]}';
+  ]}' https://api.line.me/v2/bot/richmenu;
+  EOF;
   $result = json_decode(shell_exec(str_replace('\\', '', str_replace(PHP_EOL, '', $sh))), true);
   return $result['richMenuId'];	
   /*
