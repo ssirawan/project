@@ -40,8 +40,8 @@ echo "OK";
 	
 
 function createNewRichmenu($channelAccessToken) {
-
-  curl -v -X POST https://api.line.me/v2/bot/richmenu \
+  $sh = <<< EOF
+  curl -X POST \
   -H 'Authorization: Bearer $channelAccessToken' \
   -H 'Content-Type:application/json' \
   -d \
