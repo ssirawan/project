@@ -15,7 +15,8 @@ $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
 
 foreach ($events as $event)
 {
-  if($event->strlen(getText()) > 0)
+	$len = $event->strlen(getText());
+  if($len > 0)
   {
 	  $reply_token = $event->getReplyToken();
 	  $rich_menu = createNewRichmenu(getenv($ACCESS_TOKEN));
