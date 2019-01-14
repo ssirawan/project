@@ -21,10 +21,12 @@ foreach (($request_array['events'] as $event)
 	
   if(( $event['type'] == 'message' ) && ( $event['message']['type'] == 'text' ))
   {
-	  $reply_token = $event['replyToken'];
-	  $rich_menu = createNewRichmenu(getenv($ACCESS_TOKEN));
+	  //$reply_token = $event['replyToken'];
+	  //$rich_menu = createNewRichmenu(getenv($ACCESS_TOKEN));
 	  //$bot->replyMessage($event->getReplyToken(),$data);
+	  $bot->replyMessage($event->getReplyToken(),new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(createNewRichmenu(getenv($ACCESS_TOKEN))));
   }
+	/*
   if( strlen($rich_menu) > 0 ) 
   {
 
@@ -36,7 +38,7 @@ foreach (($request_array['events'] as $event)
 	  
    $send_result = send_reply_msg($REPLY_URL, $POST_HEADER, $post_body);
 
-
+*/
 }
 
 
