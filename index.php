@@ -24,12 +24,7 @@ foreach ($events as $event)
   {
 	  $data = createNewRichmenu(getenv($ACCESS_TOKEN));
 	  $bot->replyMessage($event->getReplyToken(),$data);
-	  /*
-	  $richmenu = '';//เรียกใช้ function สร้าง richmenu
-	  $data = $richmenu['richMenuId'];
-	  //$text = $event['richMenuId'];
-	  $reply_message = $data;
-	  */
+
   }
 
 }
