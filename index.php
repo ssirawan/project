@@ -101,6 +101,7 @@ function createNewRichmenu($channelAccessToken) {
   EOF;
   $result = json_decode(shell_exec(str_replace('\\', '', str_replace(PHP_EOL, '', $sh))), true);
   return $result['richMenuId'];	
+	
   /*
 	if(isset($result['richMenuId'])) {
     return $result['richMenuId'];
