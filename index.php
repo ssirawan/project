@@ -21,7 +21,7 @@ foreach ($events as $event)
 	  $rich_menu = createNewRichmenu(getenv($ACCESS_TOKEN));
 	  //$bot->replyMessage($event->getReplyToken(),$data);
   }
-  if( strlen($rich_menu) > 0 )  // ตั้งแต่ตรงนี้คือส่วนใหม่
+  if( strlen($rich_menu) > 0 ) 
   {
 
    $data = [
