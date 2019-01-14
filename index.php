@@ -15,7 +15,7 @@ $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true); 
 
-foreach (($request_array['events'] as $event)
+foreach ($request_array['events'] as $event)
 {
 	//$len = $event->strlen(getText());
 	
