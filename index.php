@@ -12,14 +12,14 @@ $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATUR
 
 $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
 
-$request = file_get_contents('php://input');   // Get request content
-$request_array = json_decode($request, true); 
+//$request = file_get_contents('php://input');  
+//$request_array = json_decode($request, true); 
 
-foreach ($request_array['events'] as $event)
+foreach ($events as $event)
 {
-	//$len = $event->strlen(getText());
+	$len = $event->strlen(getText());
 	
-  if(( $event['type'] == 'message' ) && ( $event['message']['type'] == 'text' ))
+  if($len >0 )
   {
 	  //$reply_token = $event['replyToken'];
 	  //$rich_menu = createNewRichmenu(getenv($ACCESS_TOKEN));
