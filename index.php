@@ -2,7 +2,7 @@
 error_reporting(E_ALL & ~E_NOTICE);
 
 
-require_once __DIR__ . '/vendor/autoload.php';
+
 
 $RICH_URL = 'https://api.line.me/v2/bot/richmenu';
 $REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
