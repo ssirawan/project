@@ -25,66 +25,17 @@ foreach ($request_array['events'] as $event)
   if (( $event['type'] == 'message' ) &&   if( $event['message']['type'] == 'text' ))
   {
 	  $reply_token = $event[0]['replyToken'];
-	  
-	  //$rich_menu = createNewRichmenu(getenv($ACCESS_TOKEN));
-	  //$bot->replyMessage($event->getReplyToken(),$data);
-	  $rich_data = {"size": {"width": 2500,"height": 1686},"selected": true, "name": "Controller","chatBarText": "index","areas": [
-			    {
-			      "bounds" : {
-				"x": 0,
-				"y": 0,
-				"width": 1254,
-				"height": 850
-			      },
-			      "action": {
-				"type": "postback",
-				"text": "ดูสินค้า",
-				"data": "Data 1"
-			      }
-			    },
-			    {
-			      "bounds": {
-				"x": 0,
-				"y": 850,
-				"width": 1258,
-				"height": 831
-			      },
-			      "action": {
-				"type": "postback",
-				"text": "Promotion",
-				"data": "Data 3"
-			      }
-			    },
-			    {
-			      "bounds": {
-				"x": 1254,
-				"y": 0,
-				"width": 1246,
-				"height": 850
-			      },
-			      "action": {
-				"type": "postback",
-				"text": "สินค้าที่บันทึกไว้",
-				"data": "Data 3"
-			      }
-			    },
-			    {
-			      "bounds": {
-				"x": 1258,
-				"y": 850,
-				"width": 1242,
-				"height": 835
-			      },
-			      "action": {
-				"type": "postback",
-				"text": "เช็คสถานะ",
-				"data": "Data 4"
-			      }
-			    }
-			  ]
-		       };
+	  $rich_area = array(
+		  array('bounds'=> array( 'x'=>'0','y'=>'0','width' => 1254,'height' => 850 ), 'action' = array('type'=> 'postback', 'text' =>'ดูสินค้า')),
+		  array('bounds'=> array( 'x'=>'0','y'=>'850','width' => 1258,'height' => 831 ), 'action' = array('type'=> 'postback', 'text' =>'Promotion')),
+		  array('bounds'=> array( 'x'=>'1254','y'=>'0','width' => 1246,'height' => 850 ), 'action' = array('type'=> 'postback', 'text' =>'สินค้าที่บันทึกไว้')),
+		  array('bounds'=> array( 'x'=>'1258','y'=>'850','width' => 1242,'height' => 835 ), 'action' = array('type'=> 'postback', 'text' =>'เช็คสถานะ'))
+		  );
+	  $rich_object = array('size'=> array('width'=>2500,'height'=>1686),'selected'=>true,
+			     'name'=>'menu','chatBarText'=>'menu','areas'=>$rich_area);
+	  $rich_obj_req = json_encode($rich_object, JSON_UNESCAPED_UNICODE);
 	  //$bot->replyMessage($event->getReplyToken(),new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(createNewRichmenu(getenv($ACCESS_TOKEN))));
-	  $rich_menu = create_rich_menu($RICH_URL,$POST_HEADER,$rich_data); 
+	  $rich_menu = create_rich_menu($RICH_URL,$POST_HEADER,$rich_obj_req); 
 	  // อันนี้ลอง post กลับไปที่ LINE แต่ใช้ฟังก์ชันคล้ายกับ send_reply_msg แต่return ค่าต่างกัน
 	  
   }
@@ -92,13 +43,16 @@ foreach ($request_array['events'] as $event)
   if( strlen($rich_menu) > 0 ) 
   {
 
-   $data = [
-    'replyToken' => $reply_token,
-    'messages' => ['type' => 'text', 'text' => $rich_menu]
-   ];
-   $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+   $post_data = array(
+	  'size'=>array('width'=>2500,'height'=>1686),
+	  "selected"=>false,
+	  "name"=>'menu',
+	  "chatBarText"=>"Menu",
+	  "areas"=>$rich_area
+	);
+   $post_body = json_encode($post_data, JSON_UNESCAPED_UNICODE);
 	  
-   $send_result = send_reply_msg($REPLY_URL, $POST_HEADER, $post_body);
+   $send_result = sentMessage($REPLY_URL, $POST_HEADER, $post_data);
 
 
   }
