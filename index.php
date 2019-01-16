@@ -84,25 +84,25 @@ foreach ($events as $event)
     }
   ]};
 	  //$bot->replyMessage($event->getReplyToken(),new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(createNewRichmenu(getenv($ACCESS_TOKEN))));
-	  $bot->create_rich_menu($RICH_URL,$POST_HEADER,$rich_data); 
+	  $rich_menu = create_rich_menu($RICH_URL,$POST_HEADER,$rich_data); 
 	  // อันนี้ลอง post กลับไปที่ LINE แต่ใช้ฟังก์ชันคล้ายกับ send_reply_msg แต่return ค่าต่างกัน
-	  $bot->send_reply_msg($REPLY_URL, $POST_HEADER, $post_body);
+	  
   }
-	/*
+	
   if( strlen($rich_menu) > 0 ) 
   {
 
    $data = [
     'replyToken' => $reply_token,
-    'messages' => [['type' => 'text', 'text' => $rich_menu]]
+    'messages' => [['type' => 'text', 'text' => $rich_menu['richmenuid']]]
    ];
    $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 	  
    $send_result = send_reply_msg($REPLY_URL, $POST_HEADER, $post_body);
 
-*/
-}
 
+  }
+}
 
 echo "OK";
 
