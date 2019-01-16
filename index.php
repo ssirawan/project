@@ -19,7 +19,7 @@ foreach ($request_array['events'] as $event)
 {
 	//$len = $request_array['events']->strlen(getText());
 	
-  if ( ( $event['type'] == 'message' ) &&   if( $event['message']['type'] == 'text' ))
+  if ( $event['type'] == 'message' ) &&   if( $event['message']['type'] == 'text' )
   {
 	  $reply_token = $event['replyToken'];
 	  
