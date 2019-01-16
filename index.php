@@ -5,8 +5,8 @@ require 'sendMessage.php';
 
 $RICH_URL = 'https://api.line.me/v2/bot/richmenu';
 $REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
-$ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOyVPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk8PnQNwJRLHbPslhqvzC1xk8lM8HLtnERPSG8oXBLNvwdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
-$CHANNEL_SECRET = 'e33ac5e982da548d1c1984ac6a97a69e';
+$ACCESS_TOKEN = 'sOEyFKdoKFQDFMhGL5xv2pliXwALUNCvZYG0QeHWRFXXmwbdnfv1Zdj6BkCbkK8qPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk6Vs4W/8jXaNYjLZOKTf0wnCnHoAeptCHg7CTZl+Zw4gdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
+$CHANNEL_SECRET = 'b41da5ab3d233c34e1bffc5a75a63846';
 $POST_HEADER = array('Content-Type: application/json ; charset=UTF-8', 'Authorization: Bearer ' . $ACCESS_TOKEN, 'cache-control: no-cache');
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($ACCESS_TOKEN);
@@ -20,10 +20,7 @@ $request_array = json_decode($request, true);
 
 foreach ($request_array['events'] as $event)
 {
-	//$len = $request_array['events']->strlen(getText());
-	
-  if (( $event['type'] == 'message' ) &&   if( $event['message']['type'] == 'text' ))
-  {
+  
 	  $reply_token = $event[0]['replyToken'];
 	  $rich_area = array(
 		  array('bounds'=> array( 'x'=>'0','y'=>'0','width' => 1254,'height' => 850 ), 'action' = array('type'=> 'postback', 'text' =>'ดูสินค้า')),
@@ -38,7 +35,7 @@ foreach ($request_array['events'] as $event)
 	  $rich_menu = create_rich_menu($RICH_URL,$POST_HEADER,$rich_obj_req); 
 	  // อันนี้ลอง post กลับไปที่ LINE แต่ใช้ฟังก์ชันคล้ายกับ send_reply_msg แต่return ค่าต่างกัน
 	  
-  }
+  
 	
   if( $result ) 
   {
@@ -81,7 +78,7 @@ function create_rich_menu($post_url, $post_header, $post_body)
  curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
  $result = curl_exec($ch);
-	
+ 	
  curl_close($ch);
  return $result;	
 }
