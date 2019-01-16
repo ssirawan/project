@@ -14,16 +14,16 @@ $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($ACCESS_TOKEN);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $CHANNEL_SECRET]);
 $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 
-$events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
+//$events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
 
-//$request = file_get_contents('php://input');  
-//$request_array = json_decode($request, true); 
+$request = file_get_contents('php://input');  
+$request_array = json_decode($request, true); 
 
-foreach ($events as $event)
+foreach ($request_array['events'] as $event)
 {
-	$len = $event->strlen(getText());
+	//$len = $request_array['events']->strlen(getText());
 	
-  if($len >0 )
+  if ( ( $event['type'] == 'message' ) &&   if( $event['message']['type'] == 'text' ))
   {
 	  $reply_token = $event['replyToken'];
 	  
