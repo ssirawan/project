@@ -94,7 +94,7 @@ foreach ($events as $event)
 
    $data = [
     'replyToken' => $reply_token,
-    'messages' => [['type' => 'text', 'text' => $rich_menu['richmenuid']]]
+    'messages' => [['type' => 'text', 'text' => $rich_menu]]
    ];
    $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 	  
