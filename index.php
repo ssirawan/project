@@ -4,6 +4,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+$RICH_URL = 'https://api.line.me/v2/bot/richmenu';
 $REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'vEcA9SC+uVHF+zBZZQod5Yp/fS2Xn+lUkqHKi1EE1OGXZjtGJlfwrKfkLFu+wOyVPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk8PnQNwJRLHbPslhqvzC1xk8lM8HLtnERPSG8oXBLNvwdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
 $CHANNEL_SECRET = 'e33ac5e982da548d1c1984ac6a97a69e';
@@ -25,9 +26,67 @@ foreach ($events as $event)
   if($len >0 )
   {
 	  //$reply_token = $event['replyToken'];
+	  
 	  //$rich_menu = createNewRichmenu(getenv($ACCESS_TOKEN));
 	  //$bot->replyMessage($event->getReplyToken(),$data);
-	  $bot->replyMessage($event->getReplyToken(),new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(createNewRichmenu(getenv($ACCESS_TOKEN))));
+	  $rich_data = {"size": {"width": 2500,"height": 1686},"selected": true, "name": "Controller","chatBarText": "index","areas": [
+    {
+      "bounds" : {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 850
+      },
+      "action": {
+        "type": "postback",
+        "text": "ดูสินค้า",
+        "data": "Data 1"
+      }
+    },
+    {
+      "bounds": {
+        "x": 0,
+        "y": 850,
+        "width": 1258,
+        "height": 831
+      },
+      "action": {
+        "type": "postback",
+        "text": "Promotion",
+        "data": "Data 3"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1254,
+        "y": 0,
+        "width": 1246,
+        "height": 850
+      },
+      "action": {
+        "type": "postback",
+        "text": "สินค้าที่บันทึกไว้",
+        "data": "Data 3"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1258,
+        "y": 850,
+        "width": 1242,
+        "height": 835
+      },
+      "action": {
+        "type": "postback",
+        "text": "เช็คสถานะ",
+        "data": "Data 4"
+      }
+    }
+  ]};
+	  //$bot->replyMessage($event->getReplyToken(),new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(createNewRichmenu(getenv($ACCESS_TOKEN))));
+	  $bot->create_rich_menu($RICH_URL,$POST_HEADER,$rich_data); 
+	  // อันนี้ลอง post กลับไปที่ LINE แต่ใช้ฟังก์ชันคล้ายกับ send_reply_msg แต่return ค่าต่างกัน
+	  $bot->send_reply_msg($REPLY_URL, $POST_HEADER, $post_body);
   }
 	/*
   if( strlen($rich_menu) > 0 ) 
@@ -46,8 +105,10 @@ foreach ($events as $event)
 
 
 echo "OK";
-	
 
+
+
+/*
 function createNewRichmenu($channelAccessToken) {
   $sh = <<< EOF
   curl -X POST \
@@ -111,17 +172,16 @@ function createNewRichmenu($channelAccessToken) {
   $result = json_decode(shell_exec(str_replace('\\', '', str_replace(PHP_EOL, '', $sh))), true);
   return $result['richMenuId'];	
 	
-  /*
+  //ตั้งแต่ตรงนี้ไม่ใช้จ้า
 	if(isset($result['richMenuId'])) {
     return $result['richMenuId'];
   }
   else {
     return $result['message'];
   }
-  */
+  
 }
-
-
+*/
 
 function send_reply_msg($url, $post_header, $post_body)
 {
@@ -136,6 +196,18 @@ function send_reply_msg($url, $post_header, $post_body)
  return $result;	
 }
 
+function create_rich_menu($post_url, $post_header, $post_body)
+{
+ $ch = curl_init($url);
+ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+ curl_setopt($ch, CURLOPT_HTTPHEADER, $post_header);
+ curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
+ curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+ $result = curl_exec($ch);
+ curl_close($ch);
+ return $result['richMenuId'];	
+}
 
 
 
