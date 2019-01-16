@@ -21,7 +21,7 @@ foreach ($request_array['events'] as $event)
 	
   if (( $event['type'] == 'message' ) &&   if( $event['message']['type'] == 'text' ))
   {
-	  $reply_token = $event['replyToken'];
+	  $reply_token = $event[0]['replyToken'];
 	  
 	  //$rich_menu = createNewRichmenu(getenv($ACCESS_TOKEN));
 	  //$bot->replyMessage($event->getReplyToken(),$data);
