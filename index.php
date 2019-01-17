@@ -79,7 +79,7 @@ function create_rich_menu($post_url, $post_header, $post_body)
  if ($err) {
         return $err;
     } else {
-    	return $response;
+    	return $result;
     }	
 
 	
