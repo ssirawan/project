@@ -9,11 +9,13 @@ $ACCESS_TOKEN = 'sOEyFKdoKFQDFMhGL5xv2pliXwALUNCvZYG0QeHWRFXXmwbdnfv1Zdj6BkCbkK8
 $CHANNEL_SECRET = 'b41da5ab3d233c34e1bffc5a75a63846';
 $POST_HEADER = array('Content-Type: application/json ; charset=UTF-8', 'Authorization: Bearer ' . $ACCESS_TOKEN, 'cache-control: no-cache');
 
+/*
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($ACCESS_TOKEN);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $CHANNEL_SECRET]);
 $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 
-//$events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
+$events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
+*/
 
 $request = file_get_contents('php://input');  
 $request_array = json_decode($request, true); 
