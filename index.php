@@ -1,11 +1,11 @@
 <?php
 require 'sendMessage.php';
-
+require 'TypeMessage.php';
 
 
 $RICH_URL = 'https://api.line.me/v2/bot/richmenu';
 $REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
-$ACCESS_TOKEN = 'sOEyFKdoKFQDFMhGL5xv2pliXwALUNCvZYG0QeHWRFXXmwbdnfv1Zdj6BkCbkK8qPGomLXbzjZOWaK7MQjJsJ3c0kPBhnDo2vxEdES6a2Kk6Vs4W/8jXaNYjLZOKTf0wnCnHoAeptCHg7CTZl+Zw4gdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
+$ACCESS_TOKEN = getTokenData(); 
 $CHANNEL_SECRET = 'b41da5ab3d233c34e1bffc5a75a63846';
 $POST_HEADER = array('Content-Type: application/json ; charset=UTF-8', 'Authorization: Bearer ' . $ACCESS_TOKEN, 'cache-control: no-cache');
 
