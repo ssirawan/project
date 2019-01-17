@@ -66,7 +66,7 @@ echo "OK";
 
 function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
 {
- $ch = curl_init($url);
+ $ch = curl_init($post_url);
  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -80,15 +80,15 @@ function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
  $result = curl_exec($ch);
- //$err = curl_error($ch);
+ $err = curl_error($ch);
  	
  curl_close($ch);
 	
- //if (strlen($result)==0) {
-    //    return $RICH_URL;
-  //  } else {
+ if ($err) {
+      return $err;
+   } else {
     	return json_decode($result,true);
-  //  }	
+   }	
 
 	
 	
