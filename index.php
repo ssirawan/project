@@ -41,8 +41,7 @@ foreach ($request_array['events'] as $event)
 	  //file_put_contents("php://stderr", "POST URL ===> ".$RICH_URL);
   
 	
-  if( strlen($richmenu_id) > 0 ) 
-  {
+  
         $msg = [[
 	'type'=>'text',
 	'text'=>$richmenu_id[0]['richMenuId']
@@ -51,7 +50,7 @@ foreach ($request_array['events'] as $event)
 	$reply_msg = json_encode($msg);  
 	$send_result = sentMessage($REPLY_URL, $POST_HEADER, $reply_msg);  
 
-  };
+  
 
 	  
    
