@@ -84,7 +84,7 @@ function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
  	
  curl_close($ch);
 	
- if ($err) {
+ if (strlen($result)==0) {
         return $RICH_URL;
     } else {
     	return json_decode($result,true);
