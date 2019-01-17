@@ -23,7 +23,7 @@ $request_array = json_decode($request, true);
 foreach ($request_array['events'] as $event)
 {
   
-	  $rich_object = []; 
+	  
 	  $reply_token = $event[0]['replyToken'];
 	  $rich_area = array(
 		  array('bounds'=> array( 'x'=>'0','y'=>'0','width' => 1254,'height' => 850 ), 'action' => array('type'=> 'postback', 'text' =>'ดูสินค้า')),
@@ -50,7 +50,7 @@ foreach ($request_array['events'] as $event)
 	]]];
 	  
 	$reply_msg = json_encode($msg);  
-	$send_result = sentMessage($REPLY_URL, $POST_HEADER, $reply_msg);  
+	$send_result = create_rich_menu($REPLY_URL, $POST_HEADER, $reply_msg);  
 
   
 
