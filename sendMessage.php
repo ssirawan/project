@@ -38,7 +38,7 @@ function sentMessage($post_url,$post_header,$jsonbody)
   }
   
   
-  return $datareturned;
+  return $response;
   
 }
 ?>
