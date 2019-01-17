@@ -38,7 +38,7 @@ foreach ($request_array['events'] as $event)
 	  // อันนี้ลอง post กลับไปที่ LINE แต่ใช้ฟังก์ชันคล้ายกับ send_reply_msg แต่return ค่าต่างกัน
 	  
 	  file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
-	  file_put_contents("php://stderr", "POST URL ===> ".$RICH_URL);
+	  //file_put_contents("php://stderr", "POST URL ===> ".$RICH_URL);
   
 	
   if( strlen($richmenu_id) > 0 ) 
@@ -80,12 +80,12 @@ function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
  $result = curl_exec($ch);
- $err = curl_error($ch);
+ //$err = curl_error($ch);
  	
  curl_close($ch);
 	
  if ($err) {
-        return $err;
+        return $RICH_URL;
     } else {
     	return json_decode($result,true);
     }	
