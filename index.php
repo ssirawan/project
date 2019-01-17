@@ -45,7 +45,7 @@ foreach ($request_array['events'] as $event)
   {
         $msg = [[
 	'type'=>'text',
-	'text'=>$richmenu_id[0]
+	'text'=>$richmenu_id[0]['richMenuId']
 	]];
 	  
 	$reply_msg = json_encode($msg);  
