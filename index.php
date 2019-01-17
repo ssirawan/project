@@ -50,7 +50,7 @@ foreach ($request_array['events'] as $event)
 
 
   }
-}
+
 
 echo "OK";
 
