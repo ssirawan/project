@@ -35,7 +35,7 @@ foreach ($request_array['events'] as $event)
 			     'name'=>'menu','chatBarText'=>'menu','areas'=>  $rich_area );
 	  $rich_obj_req = json_encode($rich_object, JSON_UNESCAPED_UNICODE);
 	  //$bot->replyMessage($event->getReplyToken(),new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(createNewRichmenu(getenv($ACCESS_TOKEN))));
-	  $richmenu_id = create_rich_menu($RICH_URL,$POST_HEADER,$rich_obj_req); 
+	  $richmenu_id = create_rich_menu($RICH_URL,$ACCESS_TOKEN,$rich_obj_req); 
 	  // อันนี้ลอง post กลับไปที่ LINE แต่ใช้ฟังก์ชันคล้ายกับ send_reply_msg แต่return ค่าต่างกัน
 	  file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
   
@@ -63,12 +63,16 @@ echo "OK";
 
 
 
-function create_rich_menu($post_url, $post_header, $post_body)
+function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
 {
  $ch = curl_init($url);
  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
- curl_setopt($ch, CURLOPT_HTTPHEADER, $post_header);
+ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        "authorization: Bearer ".$token,
+        "cache-control: no-cache",
+        "content-type: application/json; charset=UTF-8",
+      ));
  curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
  $result = curl_exec($ch);
