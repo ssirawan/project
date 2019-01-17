@@ -46,7 +46,7 @@ foreach ($request_array['events'] as $event)
 		'replyToken' => $reply_token,
 		'messages'=> [[
 	'type'=>'text',
-	'text'=>$richmenu_id[0]['richMenuId']
+	'text'=>$richmenu_id['richMenuId']
 	]]];
 	  
 	$reply_msg = json_encode($msg);  
