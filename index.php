@@ -28,13 +28,12 @@ foreach ($request_array['events'] as $event)
 	  $rich_object = array('size'=> array('width'=>2500,'height'=>1686),'selected'=> false ,
 			     'name'=>'rich_menu','chatBarText'=>'menu','areas'=>  $rich_area );
 	  $rich_obj_req = json_encode($rich_object, JSON_UNESCAPED_UNICODE);
-	  //$bot->replyMessage($event->getReplyToken(),new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(createNewRichmenu(getenv($ACCESS_TOKEN))));
 	  $richmenu_id = create_rich_menu($RICH_URL,$ACCESS_TOKEN,$rich_obj_req); 
 	  // อันนี้ลอง post กลับไปที่ LINE แต่ใช้ฟังก์ชันคล้ายกับ send_reply_msg แต่return ค่าต่างกัน
 	  file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
   
 	
-  if( strlen($richmenu_id) > 0 ) 
+  if( strlen($richmenu_id[0]) > 0 ) 
   {
         $msg = [[
 	'type'=>'text',
