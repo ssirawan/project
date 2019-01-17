@@ -24,7 +24,7 @@ foreach ($request_array['events'] as $event)
 		  array('bounds'=> array( 'x'=>'1254','y'=>'0','width' => 1246,'height' => 850 ), 'action' => array('type'=> 'postback', 'text' =>'สินค้าที่บันทึกไว้')),
 		  array('bounds'=> array( 'x'=>'1258','y'=>'850','width' => 1242,'height' => 835 ), 'action' => array('type'=> 'postback', 'text' =>'เช็คสถานะ'))
 		  );
-	  $rich_object = array('size'=> array('width'=>2500,'height'=>1686),'selected'=>true ,
+	  $rich_object = array('size'=> array('width'=>2500,'height'=>1686),'selected'=> false ,
 			     'name'=>'rich_menu','chatBarText'=>'menu','areas'=>  array(
 		  array('bounds'=> array( 'x'=>'0','y'=>'0','width' => 1254,'height' => 850 ), 'action' => array('type'=> 'postback', 'text' =>'ดูสินค้า')),
 		  array('bounds'=> array( 'x'=>'0','y'=>'850','width' => 1258,'height' => 831 ), 'action' => array('type'=> 'postback', 'text' =>'Promotion')),
