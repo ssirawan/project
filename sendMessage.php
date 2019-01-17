@@ -11,7 +11,7 @@ function sentMessage($post_url,$post_header,$jsonbody)
     CURLOPT_MAXREDIRS => 10,
     CURLOPT_CUSTOMREQUEST => "POST",
     CURLOPT_HTTPHEADER => $post_header,
-    CURLOPT_POSTFIELDS => $post_body,
+    CURLOPT_POSTFIELDS => $jsonbody,
     CURLOPT_FOLLOWLOCATION => 1));
   
   $response = curl_exec($curl);
