@@ -42,10 +42,12 @@ foreach ($request_array['events'] as $event)
   
 	
   
-        $msg = [[
+        $msg = [
+		'replyToken' => $reply_token,
+		'message'=> [[
 	'type'=>'text',
 	'text'=>$richmenu_id[0]['richMenuId']
-	]];
+	]]];
 	  
 	$reply_msg = json_encode($msg);  
 	$send_result = sentMessage($REPLY_URL, $POST_HEADER, $reply_msg);  
