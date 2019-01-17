@@ -51,6 +51,7 @@ foreach ($request_array['events'] as $event)
   }
   */
 echo "OK";
+file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
 
 function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
 {
