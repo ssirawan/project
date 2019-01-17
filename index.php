@@ -75,6 +75,9 @@ function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
       ));
  curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+ curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
  $result = curl_exec($ch);
  $err = curl_error($ch);
  	
