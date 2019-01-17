@@ -33,13 +33,13 @@ foreach ($request_array['events'] as $event)
 	  file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
   
 	
-  if( strlen($richmenu_id[0]) > 0 ) 
+  if( strlen($richmenu_id['richMenuId']) > 0 ) 
   {
         $msg = [
 		'replyToken'=> $reply_token,
 		'messages' => [[
 	'type'=>'text',
-	'text'=>$richmenu_id
+	'text'=>$richmenu_id['richMenuId']
 	]]];
 	  
 	$reply_msg = json_encode($msg);  
