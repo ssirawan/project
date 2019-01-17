@@ -83,7 +83,7 @@ function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
  if ($err) {
         return $err;
     } else {
-    	return $result;
+    	return json_decode($result,true);
     }	
 
 	
