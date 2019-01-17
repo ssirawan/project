@@ -69,7 +69,7 @@ function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "authorization: Bearer ".$token,
+        "authorization: Bearer ".$ACCESS_TOKEN,
         "cache-control: no-cache",
         "content-type: application/json; charset=UTF-8",
       ));
