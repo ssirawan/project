@@ -42,7 +42,7 @@ foreach ($request_array['events'] as $event)
 	  //$bot->replyMessage($event->getReplyToken(),new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(createNewRichmenu(getenv($ACCESS_TOKEN))));
 	  $richmenu_id = create_rich_menu($RICH_URL,$POST_HEADER,$rich_obj_req); 
 	  // อันนี้ลอง post กลับไปที่ LINE แต่ใช้ฟังก์ชันคล้ายกับ send_reply_msg แต่return ค่าต่างกัน
-	  file_put_contents("php://stderr", "POST JSON ===> ".$rich_menu);
+	  file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
   
 	
   if( strlen($richmenu_id) > 0 ) 
