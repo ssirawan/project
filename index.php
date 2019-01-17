@@ -43,7 +43,7 @@ foreach ($request_array['events'] as $event)
 	$rich_id = $post_data['richmenuid'];
 
 
-	);
+  };
 
 	  
    $send_result = sentMessage($REPLY_URL, $POST_HEADER, $rich_id);
