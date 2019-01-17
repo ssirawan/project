@@ -24,7 +24,6 @@ foreach ($request_array['events'] as $event)
 {
   
 	  $rich_object = []; 
-	  $return = [];
 	  $reply_token = $event[0]['replyToken'];
 	  $rich_area = array(
 		  array('bounds'=> array( 'x'=>'0','y'=>'0','width' => 1254,'height' => 850 ), 'action' => array('type'=> 'postback', 'text' =>'ดูสินค้า')),
@@ -35,11 +34,10 @@ foreach ($request_array['events'] as $event)
 	  $rich_object = array('size'=> array('width'=>2500,'height'=>1686),'selected'=>true,
 			     'name'=>'menu','chatBarText'=>'menu','areas'=>  $rich_area );
 	  $rich_obj_req = json_encode($rich_object, JSON_UNESCAPED_UNICODE);
-	  //$bot->replyMessage($event->getReplyToken(),new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(createNewRichmenu(getenv($ACCESS_TOKEN))));
-	  $richmenu_id = $return->create_rich_menu($RICH_URL,$ACCESS_TOKEN,$rich_obj_req); 
+	  $richmenu_id = create_rich_menu($RICH_URL,$ACCESS_TOKEN,$rich_obj_req); 
 	  // อันนี้ลอง post กลับไปที่ LINE แต่ใช้ฟังก์ชันคล้ายกับ send_reply_msg แต่return ค่าต่างกัน
 	  
-	  file_put_contents("php://stderr", "POST JSON ===> ".$return);
+	  file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
   
 	
   if( strlen($richmenu_id) > 0 ) 
