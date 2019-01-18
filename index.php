@@ -119,7 +119,7 @@ $curl = curl_init();
 	       "authorization: Bearer ".$ACCESS_TOKEN,
                "cache-control: no-cache",
 	       "Content-Type: image/png",
-	 	"content-length: 0"
+	 	"Content-Length: 0"
 	    ),
 	));
   
