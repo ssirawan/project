@@ -81,6 +81,7 @@ function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
 		"authorization: Bearer ".$ACCESS_TOKEN,
 		"cache-control: no-cache",
 		"content-type: application/json; charset=UTF-8",
+	        "content-length: 0"
 	      ),
 	    ));
 
