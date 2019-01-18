@@ -40,8 +40,8 @@ foreach ($request_array['events'] as $event)
 	$richMenuId = 'richmenu-2e64f30b116cfd79224317814e696858';
 	
 		
-	$file = fopen('image/richmenu.jpg', 'r');
-	$size = filesize('image/richmenu.jpg');
+	$file = fopen('richmenu.jpg', 'r');
+	$size = filesize('richmenu.jpg');
 	$fildata = fread($file,$size);
 
 	$upload_pic = upload_richmenu($richmenuid,$ACCESS_TOKEN,$fildata,$file);
