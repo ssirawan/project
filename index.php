@@ -97,7 +97,7 @@ function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
 	
 }
 
-function upload_richmenu($richmenuid,$ACCESS_TOKEN,$fildata,$file)
+function upload_richmenu($richMenuId,$ACCESS_TOKEN,$fildata,$file)
 {
 
 $curl = curl_init();
