@@ -1,6 +1,9 @@
 <?php
 require 'sendMessage.php';
 require 'TypeMessage.php';
+require 'richmenu.jpg'
+
+
 
 $RICH_URL = 'https://api.line.me/v2/bot/richmenu';
 $REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
