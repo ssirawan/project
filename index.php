@@ -42,7 +42,7 @@ foreach ($request_array['events'] as $event)
 	$fildata = fread($file,$size);
 
 	$upload_pic = upload_richmenu($richmenuid,$ACCESS_TOKEN,$fildata,$file);
-	file_put_contents("php://stderr", "POST JSON ===> ".$response);
+	file_put_contents("php://stderr", "POST JSON ===> ".$upload_pic);
 	
 	
 	
