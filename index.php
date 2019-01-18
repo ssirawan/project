@@ -66,7 +66,7 @@ foreach ($request_array['events'] as $event)
 	}	
 	file_put_contents("php://stderr", "POST JSON ===> $result);
    
-  }
+  
   
 echo "OK";
 //file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
