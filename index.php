@@ -38,7 +38,7 @@ $request_array = json_decode($request, true);
 	$file = fopen("richmenu.jpg","r");
 	$size = filesize("richmenu.jpg");
 	$fildata = fread($file,$size);
-	file_put_contents("php://stderr", "POST JSON ===> ".$file);
+	file_put_contents("php://stderr", "POST JSON ===> ".$size);
 
 	//$upload_pic = upload_richmenu($richMenuId,$ACCESS_TOKEN,$fildata,$file);
 	//file_put_contents("php://stderr", "POST JSON ===> ".$upload_pic);
