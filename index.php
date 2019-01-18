@@ -119,8 +119,8 @@ $curl = curl_init();
 	    CURLOPT_HTTPHEADER => array(
 	       "authorization: Bearer ".$ACCESS_TOKEN,
                "cache-control: no-cache",
-	       "Content-Type: image/png",
-	 	"Content-Length: 0"
+	       "Content-Type: image/jpg",
+	 	//"Content-Length: 0"
 	    ),
 	));
   
