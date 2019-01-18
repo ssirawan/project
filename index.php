@@ -1,7 +1,7 @@
 <?php
 require 'sendMessage.php';
 require 'TypeMessage.php';
-require 'richmenu.jpg'
+require 'richmenu.jpg';
 
 
 
