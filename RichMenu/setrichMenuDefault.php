@@ -4,6 +4,7 @@ require 'TypeMessage.php';
 
 $ACCCES_TOKEN = gettokendata();
 $richMenuId = 'richmenu-2e64f30b116cfd79224317814e696858';
+ /// "richmenu-19344eb51574c5075621f9d4bc96afcc"
 
 
 
