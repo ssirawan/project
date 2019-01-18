@@ -1,7 +1,7 @@
 <?php
 
 
-require('TypeMessage.php');
+require 'TypeMessage.php';
 
 $ACCESS_TOKEN = getTokenData();
 $RICH_URL = 'https://api.line.me/v2/bot/richmenu';
