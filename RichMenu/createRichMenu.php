@@ -56,5 +56,5 @@ function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
     } else {
     	return $result;
     }	
-	
+}	
 ?>
