@@ -38,7 +38,7 @@ foreach ($request_array['events'] as $event)
 	$response = set_richmenu_default($richMenuId,$ACCESS_TOKEN);
 	file_put_contents("php://stderr", "POST JSON ===> $response);
    
-  
+}  
   
 echo "OK";
 //file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
