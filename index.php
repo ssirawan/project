@@ -36,14 +36,14 @@ foreach ($request_array['events'] as $event)
 	  // เหมือนว่าทุกครั้งที่ deploy จะได้ richmenuid ใหม่กลับมา
 	  //file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
   
-	$richMenuId = 'richmenu-2e64f30b116cfd79224317814e696858';
+	$richMenuId = 'richmenu-19344eb51574c5075621f9d4bc96afcc';
 	
 		
 	$file = fopen('richmenu.jpg','r');
 	$size = filesize('richmenu.jpg');
 	$fildata = fread($file,$size);
 
-	$upload_pic = upload_richmenu($richmenuid,$ACCESS_TOKEN,$fildata,$file);
+	$upload_pic = upload_richmenu($richMenuId,$ACCESS_TOKEN,$fildata,$file);
 	file_put_contents("php://stderr", "POST JSON ===> ".$upload_pic);
 	
 	
