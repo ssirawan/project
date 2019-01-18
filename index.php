@@ -15,7 +15,7 @@ $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
 
 $request = file_get_contents('php://input');  
 $request_array = json_decode($request, true); 
-/*
+
 foreach ($request_array['events'] as $event)
 {
   
@@ -32,24 +32,42 @@ foreach ($request_array['events'] as $event)
 	  $rich_obj_req = json_encode($rich_object, JSON_UNESCAPED_UNICODE);
 	  //$richmenu_id = create_rich_menu($RICH_URL,$ACCESS_TOKEN,$rich_obj_req); 
 	  // เหมือนว่าทุกครั้งที่ deploy จะได้ richmenuid ใหม่กลับมา
-	  file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
+	  //file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
   
-	
-  
-        $msg = [
-		'replyToken'=> $reply_token,
-		'messages' => [[
-	'type'=>'text',
-	'text'=>$richmenu_id['richMenuId']
-	]]];
-	  
-	$reply_msg = json_encode($msg);  
-	$send_result = sentMessage($REPLY_URL, $POST_HEADER, $reply_msg);  
+	$richMenuId = 'richmenu-2e64f30b116cfd79224317814e696858';
 
-	  
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+	      CURLOPT_URL => 'https://api.line.me/v2/bot/user/all/richmenu/'.$richMenuId,
+	      CURLOPT_RETURNTRANSFER => true,
+	      CURLOPT_ENCODING => "",
+	      CURLOPT_MAXREDIRS => 10,
+	      CURLOPT_TIMEOUT => 30,
+	      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	      CURLOPT_CUSTOMREQUEST => "POST",
+	      //CURLOPT_POSTFIELDS => $post_body,
+	      CURLOPT_HTTPHEADER => array(
+		"authorization: Bearer ".$ACCESS_TOKEN,
+		"cache-control: no-cache",
+		"content-type: application/json; charset=UTF-8",
+	      ),
+	    ));
+
+	 $result = curl_exec($curl);
+	 $err = curl_error($curl);
+
+	 curl_close($curl);
+
+	 if ($err) {
+		var_dump($err);
+	    } else {
+		  var_dump($result);
+	    }	
+	}	
+	file_put_contents("php://stderr", "POST JSON ===> $result);
    
   }
-*/  
+  
 echo "OK";
 //file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
 
