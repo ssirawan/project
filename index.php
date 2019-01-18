@@ -39,7 +39,7 @@ foreach ($request_array['events'] as $event)
 	$richMenuId = 'richmenu-2e64f30b116cfd79224317814e696858';
 	
 		
-	$file = fopen('richmenu.jpg', 'r');
+	$file = fopen('richmenu.jpg');
 	$size = filesize('richmenu.jpg');
 	$fildata = fread($file,$size);
 
