@@ -15,7 +15,7 @@ $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
 
 $request = file_get_contents('php://input');  
 $request_array = json_decode($request, true); 
-
+/*
 foreach ($request_array['events'] as $event)
 {
   
@@ -30,7 +30,7 @@ foreach ($request_array['events'] as $event)
 	  $rich_object = array('size'=> array('width'=>2500,'height'=>1686),'selected'=> false ,
 			     'name'=>'rich_menu','chatBarText'=>'menu','areas'=>  $rich_area );
 	  $rich_obj_req = json_encode($rich_object, JSON_UNESCAPED_UNICODE);
-	  $richmenu_id = create_rich_menu($RICH_URL,$ACCESS_TOKEN,$rich_obj_req); 
+	  //$richmenu_id = create_rich_menu($RICH_URL,$ACCESS_TOKEN,$rich_obj_req); 
 	  // เหมือนว่าทุกครั้งที่ deploy จะได้ richmenuid ใหม่กลับมา
 	  file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
   
@@ -49,7 +49,7 @@ foreach ($request_array['events'] as $event)
 	  
    
   }
-  
+*/  
 echo "OK";
 //file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
 
