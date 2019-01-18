@@ -35,8 +35,25 @@ foreach ($request_array['events'] as $event)
 	  //file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
   
 	$richMenuId = 'richmenu-2e64f30b116cfd79224317814e696858';
+	
+		
+	$file = fopen('richmenu.jpg', 'r');
+	$size = filesize('richmenu.jpg');
+	$fildata = fread($file,$size);
+
+	$upload_pic = upload_richmenu($richmenuid,$ACCESS_TOKEN,$fildata,$file);
+	file_put_contents("php://stderr", "POST JSON ===> ".$response);
+	
+	
+	
+	
+	/*set rich menu default after upload img 
 	$response = set_richmenu_default($richMenuId,$ACCESS_TOKEN);
 	file_put_contents("php://stderr", "POST JSON ===> ".$response);
+	*/
+	
+	
+	
    
 }  
   
@@ -79,6 +96,43 @@ function create_rich_menu($post_url, $ACCESS_TOKEN , $post_body)
 	
 	
 }
+
+function upload_richmenu($richmenuid,$ACCESS_TOKEN,$fildata,$file)
+{
+
+$curl = curl_init();
+	curl_setopt_array($curl, array(
+	    CURLOPT_URL => "https://api.line.me/v2/bot/richmenu/".$richMenuId."/content",
+	    CURLOPT_RETURNTRANSFER => true,
+	    CURLOPT_BINARYTRANSFER => true,
+	    CURLOPT_ENCODING => "",
+	    CURLOPT_MAXREDIRS => 10,
+	    CURLOPT_TIMEOUT => 30,
+	    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	    CURLOPT_CUSTOMREQUEST => "POST",
+	    CURLOPT_POSTFIELDS => $fildata,
+	    CURLOPT_INFILE => $file,
+	    CURLOPT_HTTPHEADER => array(
+	      "authorization: Bearer ".$ACCESS_TOKEN,
+	      "Cache-Control: no-cache",
+	      "Content-Type: image/png",
+	    ),
+	));
+  
+	$response = curl_exec($curl);
+	$err = curl_error($curl);
+	curl_close($curl);
+  
+  
+	if ($err) {
+         return $err;
+    } else {
+    	return $response;
+    }
+
+
+}
+
 
 
 function set_richmenu_default($richMenuId,$ACCESS_TOKEN)
