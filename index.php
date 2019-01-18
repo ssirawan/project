@@ -116,9 +116,10 @@ $curl = curl_init();
 	    CURLOPT_POSTFIELDS => $fildata,
 	    CURLOPT_INFILE => $file,
 	    CURLOPT_HTTPHEADER => array(
-	      "authorization: Bearer ".$ACCESS_TOKEN,
-	      "Cache-Control: no-cache",
-	      "Content-Type: image/png",
+	       "authorization: Bearer ".$ACCESS_TOKEN,
+               "cache-control: no-cache",
+	       "Content-Type: image/png",
+	 	"Content-Length: 0"
 	    ),
 	));
   
