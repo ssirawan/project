@@ -9,21 +9,16 @@ $RICH_URL = 'https://api.line.me/v2/bot/richmenu';
 $REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = getTokenData(); 
 $POST_HEADER = array('Content-Type: application/json ; charset=UTF-8', 'Authorization: Bearer ' . $ACCESS_TOKEN, 'cache-control: no-cache');
-/*
-$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($ACCESS_TOKEN);
-$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $CHANNEL_SECRET]);
-$signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
-$events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
-*/
+
 
 $request = file_get_contents('php://input');  
 $request_array = json_decode($request, true); 
 
-foreach ($request_array['events'] as $event)
-{
+//foreach ($request_array['events'] as $event)
+//{
   
 	  $rich_object = []; 
-	  $reply_token = $event[0]['replyToken'];
+	 // $reply_token = $event[0]['replyToken'];
 	  $rich_area = array(
 		  array('bounds'=> array( 'x'=>'0','y'=>'0','width' => 1254,'height' => 850 ), 'action' => array('type'=> 'postback', 'text' =>'ดูสินค้า','data' => 'action=buy&itemid=123')),
 		  array('bounds'=> array( 'x'=>'0','y'=>'850','width' => 1258,'height' => 831 ), 'action' => array('type'=> 'postback', 'text' =>'Promotion','data' => 'action=buy&itemid=123')),
@@ -58,7 +53,7 @@ foreach ($request_array['events'] as $event)
 	
 	
    
-}  
+//}  
   
 echo "OK";
 //file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
@@ -120,7 +115,7 @@ $curl = curl_init();
 	       "authorization: Bearer ".$ACCESS_TOKEN,
                "cache-control: no-cache",
 	       "Content-Type: image/jpg",
-	 	//"Content-Length: 0"
+	 	"Content-Length: 0"
 	    ),
 	));
   
