@@ -144,9 +144,12 @@ $curl = curl_init();
 	      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	      CURLOPT_CUSTOMREQUEST => "POST",
 	      CURLOPT_POSTFIELDS => $post_body,
-	      CURLOPT_HTTPHEADER => "authorization: Bearer ".$ACCESS_TOKEN,
-		
-	    ));
+	      CURLOPT_HTTPHEADER => array(
+        "authorization: Bearer ".$ACEES_TOKEN,
+        "cache-control: no-cache",
+        "content-type: application/json; charset=UTF-8",
+      ),
+    ));
 
 	 $result = curl_exec($curl);
 	 $err = curl_error($curl);
