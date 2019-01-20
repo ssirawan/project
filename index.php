@@ -36,16 +36,16 @@ $POST_HEADER = array('Content-Type: application/json ; charset=UTF-8', 'Authoriz
 	$fildata = fread($file,$size);
 	//file_put_contents("php://stderr", "POST JSON ===> ".$size);
 
-	$upload_pic = upload_richmenu($richMenuId,$ACCESS_TOKEN,$fildata,$file);
-	file_put_contents("php://stderr", "POST JSON ===> ".$upload_pic);
+	//$upload_pic = upload_richmenu($richMenuId,$ACCESS_TOKEN,$fildata,$file);
+	//file_put_contents("php://stderr", "POST JSON ===> ".$upload_pic);
 	
 	
 	
 	
-	/*set rich menu default after upload img 
+	//set rich menu default after upload img 
 	$response = set_richmenu_default($richMenuId,$ACCESS_TOKEN);
 	file_put_contents("php://stderr", "POST JSON ===> ".$response);
-	*/
+	
 	
 	
 	
