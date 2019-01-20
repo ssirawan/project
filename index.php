@@ -1,7 +1,8 @@
 <?php
+
 require 'sendMessage.php';
 require 'TypeMessage.php';
-require 'image/rich_menu.jpg';
+
 
 
 
@@ -10,12 +11,7 @@ $REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = getTokenData(); 
 $POST_HEADER = array('Content-Type: application/json ; charset=UTF-8', 'Authorization: Bearer ' . $ACCESS_TOKEN, 'cache-control: no-cache');
 
-
-$request = file_get_contents('php://input');  
-$request_array = json_decode($request, true); 
-
-//foreach ($request_array['events'] as $event)
-//{
+/*
   
 	  $rich_object = []; 
 	 // $reply_token = $event[0]['replyToken'];
@@ -31,7 +27,7 @@ $request_array = json_decode($request, true);
 	  //$richmenu_id = create_rich_menu($RICH_URL,$ACCESS_TOKEN,$rich_obj_req); 
 	  // เหมือนว่าทุกครั้งที่ deploy จะได้ richmenuid ใหม่กลับมา
 	  //file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
-  
+*/  
 	$richMenuId = 'richmenu-19344eb51574c5075621f9d4bc96afcc';
 	
 		
