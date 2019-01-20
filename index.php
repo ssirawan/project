@@ -147,7 +147,7 @@ $curl = curl_init();
 	      CURLOPT_HTTPHEADER => array(
         "authorization: Bearer ".$ACCESS_TOKEN,
         "cache-control: no-cache",
-        "content-type: application/json; charset=UTF-8",
+        "content-type: application/json; charset=UTF-8"
       ),
     ));
 
