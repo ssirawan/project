@@ -1,7 +1,7 @@
 <?php
 require 'sendMessage.php';
 require 'TypeMessage.php';
-require 'RichMenu/richmenu.jpg';
+require 'RichMenu/rich2.png';
 
 
 
@@ -35,8 +35,8 @@ $request_array = json_decode($request, true);
 	$richMenuId = 'richmenu-19344eb51574c5075621f9d4bc96afcc';
 	
 		
-	$file = fopen("RichMenu/richmenu.jpg","r");
-	$size = filesize("RichMenu/richmenu.jpg");
+	$file = fopen("RichMenu/rich2.png","r");
+	$size = filesize("RichMenu/rich2.png");
 	$fildata = fread($file,$size);
 	file_put_contents("php://stderr", "POST JSON ===> ".$size);
 
