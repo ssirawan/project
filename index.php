@@ -136,7 +136,7 @@ function set_richmenu_default($richMenuId,$ACCESS_TOKEN)
 {
 $curl = curl_init();
 	curl_setopt_array($curl, array(
-	      CURLOPT_URL => "https://api.line.me/v2/bot/user/all/richmenu/".$richMenuId.,
+	      CURLOPT_URL => "https://api.line.me/v2/bot/user/all/richmenu/".$richMenuId,
 	      CURLOPT_RETURNTRANSFER => true,
 	      CURLOPT_ENCODING => "",
 	      CURLOPT_MAXREDIRS => 10,
