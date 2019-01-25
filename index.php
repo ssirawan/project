@@ -2,6 +2,7 @@
 
 require 'sendMessage.php';
 require 'TypeMessage.php';
+require '/RichMenu/setrichMenuDefault.php';
 
 
 
@@ -11,49 +12,13 @@ $REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = getTokenData(); 
 $POST_HEADER = array('Content-Type: application/json ; charset=UTF-8', 'Authorization: Bearer ' . $ACCESS_TOKEN, 'cache-control: no-cache');
 
-/*
-  
-	  $rich_object = []; 
-	 // $reply_token = $event[0]['replyToken'];
-	  $rich_area = array(
-		  array('bounds'=> array( 'x'=>'0','y'=>'0','width' => 1254,'height' => 850 ), 'action' => array('type'=> 'postback', 'text' =>'ดูสินค้า','data' => 'action=buy&itemid=123')),
-		  array('bounds'=> array( 'x'=>'0','y'=>'850','width' => 1258,'height' => 831 ), 'action' => array('type'=> 'postback', 'text' =>'Promotion','data' => 'action=buy&itemid=123')),
-		  array('bounds'=> array( 'x'=>'1254','y'=>'0','width' => 1246,'height' => 850 ), 'action' => array('type'=> 'postback', 'text' =>'สินค้าที่บันทึกไว้','data' => 'action=buy&itemid=123')),
-		  array('bounds'=> array( 'x'=>'1258','y'=>'850','width' => 1242,'height' => 835 ), 'action' => array('type'=> 'postback', 'text' =>'เช็คสถานะ','data' => 'action=buy&itemid=123'))
-		  );
-	  $rich_object = array('size'=> array('width'=>2500,'height'=>1686),'selected'=> false ,
-			     'name'=>'rich_menu','chatBarText'=>'menu','areas'=>  $rich_area );
-	  $rich_obj_req = json_encode($rich_object, JSON_UNESCAPED_UNICODE);
-	  //$richmenu_id = create_rich_menu($RICH_URL,$ACCESS_TOKEN,$rich_obj_req); 
-	  // เหมือนว่าทุกครั้งที่ deploy จะได้ richmenuid ใหม่กลับมา
-	  //file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
-*/
-	$richMenuId = 'richmenu-19344eb51574c5075621f9d4bc96afcc';
-	
-		
-	$file = fopen("image/rich_menu.jpg","r");
-	$size = filesize("image/rich_menu.jpg");
-	$fildata = fread($file,$size);
-	//file_put_contents("php://stderr", "POST JSON ===> ".$size);
 
-	//$upload_pic = upload_richmenu($richMenuId,$ACCESS_TOKEN,$fildata,$file);
-	//file_put_contents("php://stderr", "POST JSON ===> ".$upload_pic);
+
 	
-	
-	
-	
-	//set rich menu default after upload img 
-	$response = set_richmenu_default($richMenuId,$ACCESS_TOKEN);
-	file_put_contents("php://stderr", "POST JSON ===> ".$response);
-	
-	
-	
-	
-   
-//}  
+
   
 echo "OK";
-//file_put_contents("php://stderr", "POST JSON ===> ".$richmenu_id);
+
 
 			  
 			
